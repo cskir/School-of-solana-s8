@@ -15,14 +15,31 @@ use crate::errors::TwitterError;
 use crate::states::*;
 
 pub fn remove_reaction(ctx: Context<RemoveReactionContext>) -> Result<()> {
-    // TODO: Implement remove reaction functionality
-    todo!()
+    let tweet_reaction = &mut ctx.accounts.tweet_reaction;
+    let tweet = &mut ctx.accounts.tweet;
+
+   match tweet_reaction.reaction {
+        ReactionType::Like => {
+            require!(tweet.likes > 0, TwitterError::MinLikesReached);            
+            tweet.likes -= 1;
+        },
+        ReactionType::Dislike => {
+            require!(tweet.dislikes > 0, TwitterError::MinDislikesReached);
+            tweet.dislikes -= 1;
+        },        
+    }
+
+    Ok(())
 }
 
 #[derive(Accounts)]
 pub struct RemoveReactionContext<'info> {
-    // TODO: Add required account constraints
+    #[account(mut)]
     pub reaction_author: Signer<'info>,
+    #[account(mut, 
+    constraint = tweet_reaction.reaction_author.key() == reaction_author.key() && tweet_reaction.parent_tweet == tweet.key(),
+    close = reaction_author)]
     pub tweet_reaction: Account<'info, Reaction>,
+    #[account(mut)]
     pub tweet: Account<'info, Tweet>,
 }
