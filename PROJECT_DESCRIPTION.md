@@ -47,6 +47,7 @@ The dApp is built around three core components:
 The Voting Pass token is an essential part of the design:
 - Each eligible voter receives exactly 1 token from the admin
 - The token must be burned during voting
+
 This ensures:
 - One-user–one-vote
 - No double voting
@@ -124,4 +125,4 @@ anchor test
 ```
 
 ### Additional Notes for Evaluators
-This was my first Solana dApp and the learning curve was steep! Since I am not a frontend developer, the frontend side was steep too. Originally I planned a more comlex election system, with experimental voting strategies (preferential voting, pro/contra voting). Furthermore with a token pass vault in order to store the proof of the voting and not just simple polls, but with candidate list, but things started to get out of hand, so I just reduced back to a more feasible scope. Anyway it was fun!
+This was my first Solana dApp and the learning curve was steep! Since I am not a frontend developer, the frontend side was steep too. Originally I planned a more complex election system, with experimental voting strategies (preferential voting, pro/contra voting). Furthermore with a token pass vault in order to store the proof of the voting and not just simple polls, but with candidate list, but things started to get out of hand, so I just reduced back to a more feasible scope. Anyway it was fun!
