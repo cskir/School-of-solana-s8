@@ -1,0 +1,420 @@
+{
+  "address": "5rmQS8GUu872Xofm9LD1D8CUDvwdrdR32XLDbxcBcWED",
+  "metadata": {
+    "name": "anchor_project",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "add_voter",
+      "discriminator": [
+        171,
+        104,
+        244,
+        58,
+        192,
+        30,
+        92,
+        140
+      ],
+      "accounts": [
+        {
+          "name": "voter",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true
+        },
+        {
+          "name": "voter_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  111,
+                  116,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "voter"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108,
+                  112,
+                  111,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "poll_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "voting_mint"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "poll_id",
+          "type": "u64"
+        },
+        {
+          "name": "question",
+          "type": "string"
+        },
+        {
+          "name": "start_ts",
+          "type": "i64"
+        },
+        {
+          "name": "end_ts",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "mint_pass",
+      "discriminator": [
+        142,
+        56,
+        26,
+        197,
+        227,
+        241,
+        84,
+        174
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true
+        },
+        {
+          "name": "voting_mint",
+          "writable": true
+        },
+        {
+          "name": "voter_pass_token_account",
+          "writable": true
+        },
+        {
+          "name": "voter",
+          "docs": [
+            "CHECK voter is not siggner"
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "start",
+      "discriminator": [
+        62,
+        15,
+        117,
+        236,
+        47,
+        1,
+        89,
+        139
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "vote",
+      "discriminator": [
+        227,
+        110,
+        155,
+        23,
+        136,
+        126,
+        172,
+        25
+      ],
+      "accounts": [
+        {
+          "name": "voter",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true
+        },
+        {
+          "name": "voter_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  111,
+                  116,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "poll"
+              },
+              {
+                "kind": "account",
+                "path": "voter"
+              }
+            ]
+          }
+        },
+        {
+          "name": "voting_mint",
+          "writable": true
+        },
+        {
+          "name": "voter_pass_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "vote_yes",
+          "type": "bool"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Poll",
+      "discriminator": [
+        110,
+        234,
+        167,
+        188,
+        231,
+        136,
+        153,
+        111
+      ]
+    },
+    {
+      "name": "VoterState",
+      "discriminator": [
+        251,
+        152,
+        76,
+        161,
+        77,
+        177,
+        239,
+        208
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidTime",
+      "msg": "Invalid start-end time settings"
+    },
+    {
+      "code": 6001,
+      "name": "NotInTimeWindow",
+      "msg": "Out of time window"
+    },
+    {
+      "code": 6002,
+      "name": "NotActive",
+      "msg": "Voting is not active"
+    },
+    {
+      "code": 6003,
+      "name": "AlreadyActive",
+      "msg": "Voting is already active"
+    },
+    {
+      "code": 6004,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    },
+    {
+      "code": 6005,
+      "name": "NoPass",
+      "msg": "Missing voting Pass"
+    },
+    {
+      "code": 6006,
+      "name": "AlreadyVoted",
+      "msg": "Voter already voted"
+    },
+    {
+      "code": 6007,
+      "name": "QuestionTooLong",
+      "msg": "Question too long"
+    }
+  ],
+  "types": [
+    {
+      "name": "Poll",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "poll_id",
+            "type": "u64"
+          },
+          {
+            "name": "question",
+            "type": "string"
+          },
+          {
+            "name": "start_ts",
+            "type": "i64"
+          },
+          {
+            "name": "end_ts",
+            "type": "i64"
+          },
+          {
+            "name": "is_active",
+            "type": "bool"
+          },
+          {
+            "name": "voting_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_yes",
+            "type": "u64"
+          },
+          {
+            "name": "total_no",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VoterState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "poll",
+            "type": "pubkey"
+          },
+          {
+            "name": "voter",
+            "type": "pubkey"
+          },
+          {
+            "name": "has_voted",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ]
+}
